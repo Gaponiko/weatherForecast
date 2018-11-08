@@ -1,0 +1,29 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <link rel="stylesheet" href="./styles/weatherForecast.css">
+    <title>Weather Forecast</title>
+</head>
+<body>
+    <main>
+        <div class="content-wrapper">
+            <input id="search-input" width="100px" value="Homel">
+            <button id="search-button">Search</button>
+            <div class="info-wrapper">
+                <div class="title-wrapper">
+                    <span class="value-title">City:</span>
+                    <span class="value-title">Temperature:</span>
+                    <span class="value-title">Weather:</span>
+                </div>
+                <div class="value-wrapper">
+                    <span class="value" id="city"></span>
+                    <span class="value" id="temperature"></span>
+                    <span class="value" id="weather"></span>
+                </div>
+            </div>
+        </div>
+    </main>
+    <script src="./src/weatherForecast.js"></script>
+</body>
+</html>
