@@ -6,24 +6,59 @@
     <title>Weather Forecast</title>
 </head>
 <body>
-    <main>
-        <div class="content-wrapper">
-            <input id="search-input" width="100px" value="Homel">
+    <div class="stars"></div>
+    <div class="twinkling"></div>
+
+    <div class="content-wrapper">
+        <h1 class="title">Weather Forecaster</h1>
+        <div class="input-wrapper">
+            <div id="loader"></div>
+            <input id="search-input" width="100px" placeholder="Enter some city...">
             <button id="search-button">Search</button>
-            <div class="info-wrapper">
-                <div class="title-wrapper">
-                    <span class="value-title">City:</span>
-                    <span class="value-title">Temperature:</span>
-                    <span class="value-title">Weather:</span>
-                </div>
-                <div class="value-wrapper">
-                    <span class="value" id="city"></span>
-                    <span class="value" id="temperature"></span>
-                    <span class="value" id="weather"></span>
-                </div>
+        </div>
+        <div class="info-wrapper" id="info-wrapper">
+            <div class="data-list">
+                <li>
+                    <span class="data-title">City:</span>
+                    <div id="city-wrapper" class="data-value">
+                        <span id="city"></span>
+                        <span id="coords"></span>
+                    </div>
+                </li>
+                <li>
+                    <span class="data-title">Temperature:</span>
+                    <span id="temperature" class="data-value"></span>
+                </li>
+                <li>
+                    <span class="data-title">Weather:</span>
+                    <div id="weather-wrapper" class="data-value">
+                        <span id="weather"></span>
+                        <span id="weather-description"></span>
+                    </div>
+                </li>
+                <li>
+                    <span class="data-title">Humidity:</span>
+                    <span id="humidity" class="data-value"></span>
+                </li>
+                <li>
+                    <span class="data-title">Pressure:</span>
+                    <span id="pressure" class="data-value"></span>
+                </li>
+                <li>
+                    <span class="data-title">Clouds:</span>
+                    <span id="clouds-percent" class="data-value"></span>
+                </li>
+                <li>
+                    <span class="data-title">Wind speed:</span>
+                    <span id="wind-speed" class="data-value"></span>
+                </li>
             </div>
         </div>
-    </main>
+    </div>
+
+<!-- <div class="clouds"></div> -->
+
     <script src="./src/weatherForecast.js"></script>
 </body>
 </html>
+
