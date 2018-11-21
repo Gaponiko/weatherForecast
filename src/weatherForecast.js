@@ -11,10 +11,15 @@ const cloudsSpan         = document.getElementById('clouds-percent');
 const coordsSpan         = document.getElementById('coords');
 const windSpeedSpan      = document.getElementById('wind-speed');
 const loader             = document.getElementById('loader');
+const mainTitle          = document.getElementById('title');
+
+const dataValue          = document.querySelectorAll('.data-value');
+
 
 const ENTER_KEY_CODE    = 13;
 
 let isGoodResponse      = false;
+let isInfoBlockVisible   = false;
 
 searchButton.onclick    = getWeather;
 window.onkeydown        = checkKey;
@@ -33,8 +38,7 @@ function getWeather() {
     fetch(url)
         .then(function (response) {
             if(response.status == 200)
-            {
-                hideError();
+            {             
                 stopLoader();
                 isGoodResponse = true;
                 return response.json();
@@ -50,7 +54,12 @@ function getWeather() {
             if(isGoodResponse) {
                 showWeather(response);
             }
-        });
+        }) 
+        .catch()
+        {
+            stopLoader();
+            showError();
+        };
 }
 
 function startLoader() {
@@ -64,7 +73,16 @@ function stopLoader() {
 }
 
 function showWeather(response) {
-    infoWrapper.style.opacity    = '1';
+    if(!isInfoBlockVisible) {
+        fillInfo(response);
+        showInfoBlock();
+    }
+    else {
+        infoTextChange(response);
+    }
+}
+
+function fillInfo(response) {
     citySpan.innerText           = response.name;
     temperatureSpan.innerText    = Math.round(response.main.temp - 273.15) + '°C';
     weatherSpan.innerText        = response.weather[0].main;
@@ -76,15 +94,46 @@ function showWeather(response) {
     windSpeedSpan.innerText      = response.wind.speed + ' m/s'
 }
 
+function infoTextChange(response) {
+    for(let i = 0; i < dataValue.length; i++) {
+        dataValue[i].style.opacity = '0';
+    }
+
+    setTimeout(function () {
+        fillInfo(response);
+
+        for(let i = 0; i < dataValue.length; i++) {
+            dataValue[i].style.opacity = '1';
+        }
+    }, 300)
+}
+
+function showInfoBlock() {
+    isInfoBlockVisible            = true;
+    mainTitle.style.marginTop     = '5%';
+    loader.style.top              = '70px';
+
+    setTimeout(function () {
+        infoWrapper.style.opacity = '1';
+    }, 500)
+}
+
+function hideInfoBlock() {
+    isInfoBlockVisible            = false;
+    infoWrapper.style.opacity     = '0';
+
+    setTimeout(function () {
+        mainTitle.style.marginTop = '30%';
+        loader.style.top          = '195px';
+    }, 500)
+}
+
 function showError() {
     searchInput.style.borderColor = 'red';
-    infoWrapper.style.opacity     = '0';
 
     setTimeout(function () {
         searchInput.style.borderColor = 'greenyellow';
     }, 500);
-}
 
-function hideError() {
-
+    hideInfoBlock();
 }
