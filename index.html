@@ -4,6 +4,7 @@
     <meta charset="UTF-8">
     <link href="https://fonts.googleapis.com/css?family=Neucha" rel="stylesheet">
     <link rel="stylesheet" href="./styles/weatherForecast.css">
+    <link rel="shortcut icon" type="image/png" href="favicon.png">
     <title>Weather Forecast</title>
 </head>
 <body>
@@ -11,7 +12,7 @@
     <div class="twinkling"></div>
 
     <div class="content-wrapper">
-        <h1 class="title">Weather Forecaster</h1>
+        <h1 class="title" id="title">Weather Forecaster</h1>
         <div class="input-wrapper">
             <div id="loader"></div>
             <input id="search-input" width="100px" placeholder="Enter some city...">
@@ -56,6 +57,8 @@
             </div>
         </div>
     </div>
+
+<!-- <div class="clouds"></div> -->
 
     <script src="./src/weatherForecast.js"></script>
 </body>
